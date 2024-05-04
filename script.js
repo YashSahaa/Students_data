@@ -109,13 +109,14 @@ function addData(dataArr) {
     body.innerHTML = "";
     for (let i of dataArr) {
         let row = document.createElement('tr');
+        let pass = (i.passing)?"passing":"failed";
         row.innerHTML = `
             <td><img src="${i.img_src}"> ${i.id}</td>
             <td>${i.first_name} ${i.last_name}</td>
             <td>${i.gender}</td>
             <td>${i.class}</td>
             <td>${i.marks}</td>
-            <td>${i.passing}</td>
+            <td>${pass}</td>
             <td>${i.email}</td>
         `;
         body.appendChild(row);
@@ -131,25 +132,13 @@ btns[0].addEventListener("click",()=>{
     let val = inputText.value
     let searchArr = []
     for (let i of arr) {
-        if(i.first_name==val) {
+        if(i.first_name==val || i.first_name.toUpperCase()==val.toUpperCase()) {
             searchArr.push(i)
         }
-        else if(i.last_name==val) {
+        else if(i.last_name==val||i.last_name.toUpperCase()==val.toUpperCase()) {
             searchArr.push(i)
         }
-        else if(i.class==val) {
-            searchArr.push(i)
-        }
-        else if(i.email==val) {
-            searchArr.push(i)
-        }
-        else if(i.gender==val) {
-            searchArr.push(i)
-        }
-        else if(i.passing==val) {
-            searchArr.push(i)
-        }
-        else if(i.city==val) {
+        else if(i.email==val ||i.email.toUpperCase()==val.toUpperCase()) {
             searchArr.push(i)
         }
     }
@@ -196,15 +185,12 @@ btns[3].addEventListener("click",()=>{
 })
 
 btns[4].addEventListener("click",()=>{
-    let des = arr.sort((a,b)=>{
-        if (a.passing > b.passing) {
-            return -1;
+    let des = []
+    for (let i of arr) {
+        if(i.passing) {
+            des.push(i)
         }
-        if (b.passing > a.passing) {
-            return 1;
-        }
-        return 0;
-    })
+    }
     addData(des)
 })
 

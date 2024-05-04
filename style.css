@@ -2,9 +2,6 @@
     margin: 0px;
     padding: 0px;
 }
-body{
-    padding: 20px;
-}
 #header{
     background-color: black;
     color: white;
@@ -14,7 +11,7 @@ body{
 
 #container{
     background-color: #cdcdcd;
-    height: 100vh;
+    height: 100%;
     padding: 10px;
 }
 
